@@ -8,14 +8,18 @@ PathSwitch::PathSwitch(int x, int y) : QObject()
 }
 
 void PathSwitch::init(QPair<int, int> source0, QPair<int, int> dest0,
-                      QPair<int, int> source1, QPair<int, int> dest1)
+                      QPair<int, int> source1, QPair<int, int> dest1,
+                      QPair<int, int> dir0,    QPair<int, int> dir1)
 {
     this->source0   = source0;
     this->dest0     = dest0;
     this->source1   = source1;
     this->dest1     = dest1;
+    this->dir0      = dir0;
+    this->dir1      = dir1;
     this->curDest   = dest0;
     this->curSource = source0;
+    this->curDir    = dir0;
 }
 
 bool PathSwitch::trigger()
@@ -25,11 +29,13 @@ bool PathSwitch::trigger()
     {
         curSource = source1;
         curDest   = dest1;
+        curDir    = dir1;
     }
     else
     {
         curSource = source0;
         curDest   = dest0;
+        curDir    = dir0;
     }
     iWasTriggered();
     return isTriggered;

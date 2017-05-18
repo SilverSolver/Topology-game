@@ -6,6 +6,7 @@ GameCore::GameCore(GameBoard *gameBoard) : QObject()
     this->gameBoard = gameBoard;
     for (auto s : gameBoard->switches)
         QObject::connect(s, SIGNAL(iWasTriggered()), this, SLOT(getTrigger()));
+    getTrigger();
 }
 
 void GameCore::getPlayerMove(int direction)
@@ -126,8 +127,10 @@ void GameCore::getTrigger()
 
     for (auto s : gameBoard->switches)
     {
-        gameBoard->field[s->curSource.second][s->curSource.first].hasWormHole = RIGHT;
-        gameBoard->field[s->curDest.second][s->curDest.first].hasWormHole = LEFT;
+        gameBoard->field[s->curSource.second][s->curSource.first].hasWormHole =
+                s->curDir.first;
+        gameBoard->field[s->curDest.second][s->curDest.first].hasWormHole =
+                s->curDir.second;
     }
     fieldChanged();
 }

@@ -10,8 +10,8 @@ GameBoard::GameBoard(int levelNum)
         QVector<Cell> line1, line2, line3;
         line1.append(Cell(0));
         line1.append(           Cell(WALL));
-        line1.append(                       Cell(0, LEFT));
-        line2.append(Cell(0, RIGHT));
+        line1.append(                       Cell(0));
+        line2.append(Cell(0));
         line2.append(           Cell(WALL));
         line2.append(                       Cell(WALL));
         line3.append(Cell(-1));
@@ -24,7 +24,8 @@ GameBoard::GameBoard(int levelNum)
 
         PathSwitch* pswitch = new PathSwitch(0, 2);
         pswitch->init(QPair<int, int>(0, 1), QPair<int, int>(2, 0),
-                      QPair<int, int>(0, 1), QPair<int, int>(2, 2));
+                      QPair<int, int>(0, 1), QPair<int, int>(2, 2),
+                      QPair<int, int>(RIGHT, LEFT), QPair<int, int>(RIGHT, LEFT));
 
         switches.clear();
         switches.append(pswitch);

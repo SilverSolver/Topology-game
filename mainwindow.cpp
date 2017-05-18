@@ -1,16 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <qdebug.h>
-#include <QKeyEvent>
-#include <levelwidget.h>
-#include <gameboard.h>
 
 MainWindow::MainWindow(QWidget *parent, GameCore* gameCore) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    this->gameCore = gameCore;
     ui->setupUi(this);
+    this->gameCore = gameCore;
+    this->fileDialog = new QFileDialog(this);
+    this->fileDialog->setNameFilter(tr("Level files (*.lvl)"));
     currentLevel = 0;
 
     QObject::connect(this->ui->QuitButton, SIGNAL(clicked(bool)),
@@ -23,6 +21,8 @@ MainWindow::MainWindow(QWidget *parent, GameCore* gameCore) :
                      this->gameCore, SLOT(getPlayerAction()));
     QObject::connect(this->gameCore, SIGNAL(levelComplete()),
                      this, SLOT(newLevel()));
+    QObject::connect(this->ui->LoadButton, SIGNAL(clicked(bool)),
+                     this->fileDialog, SLOT(show()));
 }
 
 void MainWindow::drawCurrentLevel()

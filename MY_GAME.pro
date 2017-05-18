@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     gamecore.cpp \
     pathswitch.cpp \
     cell.cpp \
-    levelwidget.cpp
+    levelwidget.cpp \
+    levelbuilder.cpp
 
 HEADERS  += mainwindow.h \
     player.h \
@@ -31,6 +32,7 @@ HEADERS  += mainwindow.h \
     gamecore.h \
     pathswitch.h \
     cell.h \
-    levelwidget.h
+    levelwidget.h \
+    levelbuilder.h
 
 FORMS    += mainwindow.ui

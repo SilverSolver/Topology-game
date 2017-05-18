@@ -1,15 +1,21 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "levelwidget.h"
+#include "gameboard.h"
+#include "gamecore.h"
+#include <qdebug.h>
+#include <QFile>
+#include <QByteArray>
+#include <QKeyEvent>
 #include <QMainWindow>
 #include <QMessageBox>
-#include <gamecore.h>
+#include <QFileDialog>
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
-
-// Класс, ответственный за интерфейс игры
 
 class MainWindow : public QMainWindow
 {
@@ -30,7 +36,9 @@ public slots:
 private:
     Ui::MainWindow *ui;
     GameCore* gameCore;
+    QFileDialog* fileDialog;
     unsigned int currentLevel;
+    QVector<QString> fileNames;
 };
 
 #endif // MAINWINDOW_H
