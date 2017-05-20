@@ -20,6 +20,8 @@ void PathSwitch::init(QPair<int, int> source0, QPair<int, int> dest0,
     this->curDest   = dest0;
     this->curSource = source0;
     this->curDir    = dir0;
+    //qDebug() << "source-dest 0" << source0 << dest0;
+    //qDebug() << "source-dest 1" << source1 << dest1;
 }
 
 bool PathSwitch::trigger()
@@ -37,6 +39,7 @@ bool PathSwitch::trigger()
         curDest   = dest0;
         curDir    = dir0;
     }
+    //qDebug() << "source-dest current" << curSource << curDest;
     iWasTriggered();
     return isTriggered;
 }

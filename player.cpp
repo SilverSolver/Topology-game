@@ -22,33 +22,8 @@ int Player::y()
     return yPos;
 }
 
-void Player::moveLeft()
-{
-    xPos--;
-}
-
-void Player::moveRight()
-{
-    xPos++;
-}
-
-void Player::moveUp()
-{
-    yPos--;
-}
-
-void Player::moveDown()
-{
-    yPos++;
-}
-
 void Player::moveTo(int xNew, int yNew)
 {
     this->xPos = xNew;
     this->yPos = yNew;
-}
-
-void Player::action()
-{
-
 }

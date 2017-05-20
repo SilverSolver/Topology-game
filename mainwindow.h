@@ -1,44 +1,36 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
-#include "levelwidget.h"
-#include "gameboard.h"
-#include "gamecore.h"
-#include <qdebug.h>
-#include <QFile>
-#include <QByteArray>
-#include <QKeyEvent>
+#include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QMessageBox>
-#include <QFileDialog>
+#include <gamecore.h>
+#include <QKeyEvent>
 
 namespace Ui
 {
-class MainWindow;
+    class MainWindow;
 }
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0, GameCore *gameCore = NULL);
-    void endOfGame();
-    void drawCurrentLevel();
-    void keyPressEvent(QKeyEvent*event);
+    explicit MainWindow(QWidget *parent, GameCore* gameCore);
+    void keyPressEvent(QKeyEvent* event);
     ~MainWindow();
 signals:
-    void movePlayer(int direction);
+    void movePlayer(int);
     void actPlayer();
 public slots:
+    void showHelp(bool);
+    void drawCurrentLevel();
     void newGame(bool);
     void newLevel();
+    void endOfGame();
 private:
     Ui::MainWindow *ui;
     GameCore* gameCore;
-    QFileDialog* fileDialog;
-    unsigned int currentLevel;
-    QVector<QString> fileNames;
+    QMessageBox* helpBox;
+    int currentLevel;
 };
-
 #endif // MAINWINDOW_H

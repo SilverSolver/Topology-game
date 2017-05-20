@@ -7,11 +7,17 @@ MainWindow::MainWindow(QWidget *parent, GameCore* gameCore) :
 {
     ui->setupUi(this);
     this->gameCore = gameCore;
-    this->fileDialog = new QFileDialog(this);
-    this->fileDialog->setNameFilter(tr("Level files (*.lvl)"));
+    //this->fileDialog = new QFileDialog(this);
+    //this->fileDialog->setNameFilter(tr("Level files (*.lvl)"));
+    //this->helpBox->set
+    helpBox = new QMessageBox();
+    helpBox->setText("Arrow keys = move, \nSpace = action; \n\n\
+                      Yellow circle = you,\n\
+                      Black bars = triggers, \n\
+                      Blue bars = teleports. \n\n Reach exit to win!");
     currentLevel = 0;
 
-    QObject::connect(this->ui->QuitButton, SIGNAL(clicked(bool)),
+    QObject::connect(this->ui->quitButton, SIGNAL(clicked(bool)),
                      this, SLOT(close()));
     QObject::connect(this->ui->newGameButton, SIGNAL(clicked(bool)),
                      this, SLOT(newGame(bool)));
@@ -21,8 +27,15 @@ MainWindow::MainWindow(QWidget *parent, GameCore* gameCore) :
                      this->gameCore, SLOT(getPlayerAction()));
     QObject::connect(this->gameCore, SIGNAL(levelComplete()),
                      this, SLOT(newLevel()));
-    QObject::connect(this->ui->LoadButton, SIGNAL(clicked(bool)),
-                     this->fileDialog, SLOT(show()));
+    QObject::connect(this->ui->helpButton, SIGNAL(clicked(bool)),
+                     this, SLOT(showHelp(bool)));
+    //QObject::connect(this->ui->LoadButton, SIGNAL(clicked(bool)),
+    //                 this->fileDialog, SLOT(show()));
+}
+
+void MainWindow::showHelp(bool)
+{
+    helpBox->exec();
 }
 
 void MainWindow::drawCurrentLevel()
@@ -34,6 +47,20 @@ void MainWindow::drawCurrentLevel()
         qDebug() << "drawCurrentLevel case 1" << endl;
 
         this->ui->level_1->setGameBoard(this->gameCore->gameBoard);
+        break;
+    }
+    case 2:
+    {
+        qDebug() << "drawCurrentLevel case 2" << endl;
+
+        this->ui->level_2->setGameBoard(this->gameCore->gameBoard);
+        break;
+    }
+    case 3:
+    {
+        qDebug() << "drawCurrentLevel case 3" << endl;
+
+        this->ui->level_3->setGameBoard(this->gameCore->gameBoard);
         break;
     }
     default:
@@ -75,6 +102,11 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         actPlayer();
         break;
     }
+    case Qt::Key_F1:
+    {
+        showHelp(1);
+        break;
+    }
     default:
         break;
     }
@@ -101,20 +133,24 @@ void MainWindow::newLevel()
         this->ui->stackedWidget->setCurrentIndex(
                 this->ui->stackedWidget->currentIndex() + 1);
 
-        QObject::connect(this->gameCore, SIGNAL(fieldChanged()),
-                         this->ui->stackedWidget->currentWidget(), SLOT(rePaintMe()));
+        gameCore->setUpLevel(this->ui->stackedWidget->currentIndex());
 
-        qDebug() << "Now Will Draw Level";
+        QObject::connect(this->gameCore, SIGNAL(fieldChanged()),
+                         this->ui->stackedWidget->currentWidget(), SLOT(repaint()));
+
+        //qDebug() << "Now Will Draw Level";
         drawCurrentLevel();
     }
     // Если вызван переход к новому уровню, когда уровни закончились, значит, это конец
-    else
+    if (this->ui->stackedWidget->currentIndex() == 4)
         endOfGame();
 }
 
 void MainWindow::endOfGame()
 {
-    // Пока не реализовано, но тут будет что-нибудь вроде поздравлений и т.п.
+    QMessageBox mBox;
+    mBox.setText("Congratulations!!! YOU WIN");
+    mBox.exec();
 }
 
 MainWindow::~MainWindow()

@@ -5,6 +5,7 @@
 #include <QPair>
 #include <cell.h>
 #include <QObject>
+#include <QDebug>
 
 class PathSwitch : public QObject
 {

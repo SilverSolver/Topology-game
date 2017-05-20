@@ -15,7 +15,6 @@ public:
     explicit LevelWidget(QWidget *parent = 0, GameBoard *gameBoard = NULL);
     void setGameBoard(GameBoard* gameBoard);
 public slots:
-    void rePaintMe();
     void paintEvent(QPaintEvent *);
 signals:
 

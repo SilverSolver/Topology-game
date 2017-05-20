@@ -14,7 +14,7 @@ public:
     GameBoard();
 
     QVector<QVector<Cell> > field;// Игровое поле - состоит из массива m x n клеток.
-    QVector<PathSwitch*> switches; // Тут будет хранится набор переключателей, находящихся
+    QVector<PathSwitch*> switches;// Тут будет хранится набор переключателей, находящихся
                                   // на данном игровом поле
     Player player; // Храним местоположение игрока
 };

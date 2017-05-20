@@ -1,11 +1,13 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <gamecore.h>
+#include <levelbuilder.h>
 
 int main(int argc, char *argv[])
 {
-    GameBoard* board1 = new GameBoard(1);
-    GameCore* gameCore = new GameCore(board1);
+    GameBoard*    board     = new GameBoard(1);
+    LevelBuilder* builder   = new LevelBuilder();
+    GameCore*     gameCore  = new GameCore(board, builder);
 
     QApplication a(argc, argv);
     MainWindow w(0, gameCore);

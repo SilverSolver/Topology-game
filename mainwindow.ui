@@ -344,7 +344,7 @@
        <string>NEW GAME</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="LoadButton">
+     <widget class="QPushButton" name="helpButton">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -354,10 +354,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>LOAD LEVEL</string>
+       <string>HELP</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="QuitButton">
+     <widget class="QPushButton" name="quitButton">
       <property name="geometry">
        <rect>
         <x>300</x>
@@ -385,6 +385,39 @@
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+    </widget>
+    <widget class="QWidget" name="win">
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>9</y>
+        <width>780</width>
+        <height>580</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>780</width>
+        <height>580</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>780</width>
+        <height>580</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">image: url(:/images/Congratulation.png);</string>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>

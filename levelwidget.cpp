@@ -13,16 +13,11 @@ void LevelWidget::setGameBoard(GameBoard *gameBoard)
     this->gameBoard = gameBoard;
 }
 
-void LevelWidget::rePaintMe()
-{
-    this->repaint();
-}
-
 void LevelWidget::paintEvent(QPaintEvent *)
 {
     //qDebug() << "HELLO, THIS IS PAINT EVENT!!!11";
     if (this->gameBoard == NULL)
-        qDebug() << "I HAVE NOT A GAMEBOARD, CANT DRAW ANYTHING, HELP ME PLS!";
+        qDebug() << "CANT FIND A GAMEBOARD, CANT DRAW ANYTHING!";
     else
     {
         QPainter painter(this);     // Инициализируем Qt-рисовальщик
@@ -120,6 +115,5 @@ void LevelWidget::paintEvent(QPaintEvent *)
         int playerY = y0 + (gameBoard->player.y() + 0.5) * height()/numCellsY;
         painter.setBrush(Qt::yellow);
         painter.drawEllipse(QPoint(playerX, playerY), MARGIN * 2, MARGIN * 2);
-
     }
 }
