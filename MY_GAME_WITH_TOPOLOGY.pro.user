@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.1.0, 2017-05-20T16:50:38. -->
+<!-- Written by QtCreator 4.1.0, 2017-05-21T13:25:21. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -250,7 +250,7 @@
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">MY_GAME_WITH_TOPOLOGY.pro</value>
     <value type="bool" key="Qt4ProjectManager.Qt4RunConfiguration.UseDyldImageSuffix">false</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory"></value>
-    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/laida/Projects_progs/CPlusPlusProjects/Cpp_Mail.ru_course/build-MY_GAME_WITH_TOPOLOGY-DINO-Debug</value>
+    <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.UserWorkingDirectory.default">/home/laida/Projects_progs/CPlusPlusProjects/Cpp_Mail.ru_course/MY_GAME_WITH_TOPOLOGY/build</value>
     <value type="uint" key="RunConfiguration.QmlDebugServerPort">3768</value>
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>

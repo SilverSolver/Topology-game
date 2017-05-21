@@ -1,8 +1,8 @@
 #include "levelbuilder.h"
+#include <memory>
 
-LevelBuilder::LevelBuilder(QObject *parent) : QObject(parent)
+LevelBuilder::LevelBuilder(QObject *parent) : QObject(parent), gameBoard(NULL)
 {
-    this->fileData = new QByteArray();
 }
 
 void LevelBuilder::setGameBoard(GameBoard* gameBoard)
@@ -15,11 +15,11 @@ void *LevelBuilder::buildGameBoard(GameBoard *gameBoard, QFile *file)
     this->gameBoard = gameBoard;
     if (file->open(QIODevice::ReadOnly))
     {
-        fileData->clear();
-        fileData->append(file->readLine());
+        fileData.clear();
+        fileData.append(file->readLine());
 
         // Проверка на правильность формата файла
-        if (QString(fileData->data()).indexOf("board:") == -1)
+        if (QString(fileData.data()).indexOf("board:") == -1)
         {
             //qDebug() << fileData->data();
             //qDebug() << "Wrong format";
@@ -38,7 +38,7 @@ void *LevelBuilder::buildGameBoard(GameBoard *gameBoard, QFile *file)
         while (!flagArrayEnd)
         {
             tempString = file->readLine();
-            fileData->append(tempString);
+            fileData.append(tempString);
             coordList  = tempString.split(QRegExp("\\s+"));
 
             if (coordList.length() <= 2)
@@ -56,8 +56,8 @@ void *LevelBuilder::buildGameBoard(GameBoard *gameBoard, QFile *file)
         }
 
         // Пропускаем строки до момента описания переключателей
-        while(QString(fileData->data()).indexOf("switches:") < 0)
-            fileData->append(file->readLine());
+        while(QString(fileData.data()).indexOf("switches:") < 0)
+            fileData.append(file->readLine());
 
         // Инициализация переключателей
         //qDebug() << "init switches...";
@@ -68,7 +68,7 @@ void *LevelBuilder::buildGameBoard(GameBoard *gameBoard, QFile *file)
         {
             // Считываем координаты переключателя
             tempString = file->readLine();
-            fileData->append(tempString);
+            fileData.append(tempString);
             coordList  = tempString.split(QRegExp("\\s+"));
             //qDebug() << coordList;
 
@@ -78,12 +78,12 @@ void *LevelBuilder::buildGameBoard(GameBoard *gameBoard, QFile *file)
                 break;
             }
 
-            PathSwitch* pswitch =
-                    new PathSwitch(coordList[0].toInt(), coordList[1].toInt());
+            std::unique_ptr<PathSwitch> pswitch(
+                        new PathSwitch(coordList[0].toInt(), coordList[1].toInt()));
 
             // Считываем параметры переключателя
             tempString = file->readLine();
-            fileData->append(tempString);
+            fileData.append(tempString);
             coordList  = tempString.split(QRegExp("\\s+"));
 
             //qDebug() << coordList;
@@ -94,15 +94,15 @@ void *LevelBuilder::buildGameBoard(GameBoard *gameBoard, QFile *file)
                           QPair<int, int>(coordList[8].toInt(),  coordList[9].toInt()),
                           QPair<int, int>(coordList[10].toInt(), coordList[11].toInt()));
 
-            gameBoard->switches.append(pswitch);
+            gameBoard->switches.push_back(std::move(pswitch));
         }
 
         // Пропускаем строки до момента описания положения игрока
-        while(QString(fileData->data()).indexOf("player:") < 0)
-            fileData->append(file->readLine());
+        while(QString(fileData.data()).indexOf("player:") < 0)
+            fileData.append(file->readLine());
 
         tempString = file->readLine();
-        fileData->append(tempString);
+        fileData.append(tempString);
         coordList  = tempString.split(QRegExp("\\s+"));
         gameBoard->player = Player(coordList[0].toInt(),  coordList[1].toInt());
     }

@@ -1,7 +1,6 @@
 #ifndef GAMECORE_H
 #define GAMECORE_H
 
-#include <QtGui>
 #include <QString>
 #include <gameboard.h>
 #include <player.h>

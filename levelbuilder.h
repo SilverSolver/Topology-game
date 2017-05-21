@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <gameboard.h>
 #include <cell.h>
+#include <memory>
 
 class LevelBuilder : public QObject
 {
@@ -21,7 +22,7 @@ public slots:
     void *buildGameBoard(GameBoard* gameBoard, QFile* file);
 private:
     GameBoard* gameBoard;
-    QByteArray* fileData;
+    QByteArray fileData;
 };
 
 #endif // LEVELBUILDER_H
