@@ -3,9 +3,9 @@
 
 #include <QVector>
 #include <QPair>
-#include <cell.h>
 #include <QObject>
 #include <QDebug>
+#include <sources/cell.h>
 
 class PathSwitch : public QObject
 {

@@ -1,10 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "ui_mainwindow.h"
 #include <QMainWindow>
 #include <QMessageBox>
-#include <gamecore.h>
 #include <QKeyEvent>
+#include <ui_mainwindow.h>
+#include <sources/gamecore.h>
 
 namespace Ui
 {

@@ -3,9 +3,9 @@
 
 #include <QObject>  // Нужен, если захочу использовать сигналы и слоты
 #include <QVector>  // QVector - аналог класса Vector из STL
-#include <player.h>
-#include <pathswitch.h>
-#include <cell.h>
+#include <sources/player.h>
+#include <sources/pathswitch.h>
+#include <sources/cell.h>
 #include <memory>
 #include <vector>
 

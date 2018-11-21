@@ -5,7 +5,7 @@
 #include <qpainter.h>
 #include <QPaintEvent>
 #include <QWidget>
-#include <gameboard.h>
+#include <sources/gameboard.h>
 
 class LevelWidget : public QWidget
 {

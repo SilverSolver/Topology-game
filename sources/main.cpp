@@ -1,7 +1,7 @@
-#include "mainwindow.h"
 #include <QApplication>
-#include <gamecore.h>
-#include <levelbuilder.h>
+#include <sources/mainwindow.h>
+#include <sources/gamecore.h>
+#include <sources/levelbuilder.h>
 
 int main(int argc, char *argv[])
 {

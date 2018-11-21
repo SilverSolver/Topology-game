@@ -11,22 +11,23 @@ CONFIG += c++11
 QMAKE_CXXFLAGS += -std=c++11
 
 # Input
-HEADERS += cell.h \
-           gameboard.h \
-           gamecore.h \
-           levelbuilder.h \
-           levelwidget.h \
-           pathswitch.h \
-           player.h \
-    mainwindow.h
-FORMS += mainwindow.ui
-SOURCES += gameboard.cpp \
-           gamecore.cpp \
-           levelbuilder.cpp \
-           levelwidget.cpp \
-           main.cpp \
-           mainwindow.cpp \
-           pathswitch.cpp \
-           player.cpp \
-    cell.cpp
-RESOURCES += res.qrc
+HEADERS += sources/cell.h \
+           sources/gameboard.h \
+           sources/gamecore.h \
+           sources/levelbuilder.h \
+           sources/levelwidget.h \
+           sources/pathswitch.h \
+           sources/player.h \
+           sources/mainwindow.h
+FORMS += resources/mainwindow.ui
+SOURCES += sources/gameboard.cpp \
+           sources/gamecore.cpp \
+           sources/levelbuilder.cpp \
+           sources/levelwidget.cpp \
+           sources/main.cpp \
+           sources/mainwindow.cpp \
+           sources/pathswitch.cpp \
+           sources/player.cpp \
+           sources/cell.cpp
+RESOURCES += resources/res.qrc \
+    resources/res.qrc

@@ -1,4 +1,4 @@
-#include <cell.h>
+#include <sources/cell.h>
 
 Cell::Cell(int type, int hasWormHole)
 {

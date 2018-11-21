@@ -427,7 +427,7 @@
   <customwidget>
    <class>LevelWidget</class>
    <extends>QWidget</extends>
-   <header location="global">levelwidget.h</header>
+   <header location="global">sources/levelwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

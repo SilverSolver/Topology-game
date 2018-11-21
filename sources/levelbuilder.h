@@ -1,14 +1,14 @@
 #ifndef LEVELBUILDER_H
 #define LEVELBUILDER_H
 
+#include <memory>
 #include <QObject>
 #include <QFile>
 #include <QByteArray>
 #include <QDebug>
 #include <QStringList>
-#include <gameboard.h>
-#include <cell.h>
-#include <memory>
+#include <sources/gameboard.h>
+#include <sources/cell.h>
 
 class LevelBuilder : public QObject
 {

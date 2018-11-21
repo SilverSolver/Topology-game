@@ -1,4 +1,4 @@
-#include "gamecore.h"
+#include <sources/gamecore.h>
 #include <QDebug>
 #include <memory>
 
@@ -12,12 +12,16 @@ GameCore::GameCore(GameBoard *gameBoard, LevelBuilder *builder) : QObject()
 
 void GameCore::setUpLevel(int levelNum)
 {
-    QString fileName(QString::number(levelNum) + QString::fromAscii(".lvl"));
+    QString fileName(QString::fromAscii("./levels/") + \
+                     QString::number(levelNum) + \
+                     QString::fromAscii(".lvl"));
+
+    qDebug() << fileName;
     std::unique_ptr<QFile> levelFile(new QFile(fileName));
 
     levelBuilder->buildGameBoard(gameBoard, levelFile.get());
 
-    for (int i = 0; i < gameBoard->switches.size(); ++i)
+    for (unsigned int i = 0; i < gameBoard->switches.size(); ++i)
     {
         auto ptr = gameBoard->switches[i].get();
         QObject::connect(ptr, SIGNAL(iWasTriggered()), this, SLOT(getTrigger()));
@@ -79,7 +83,7 @@ void GameCore::getPlayerMove(int direction)
     if (isTeleportMove == true)
     {
         //qDebug() << "teleportMove";
-        for (int i = 0; i < gameBoard->switches.size(); ++i)
+        for (unsigned int i = 0; i < gameBoard->switches.size(); ++i)
         {
             auto s = gameBoard->switches[i].get();
             if (s->curSource.first  == playerX &&
@@ -144,7 +148,7 @@ void GameCore::getTrigger()
         }
     }
 
-    for (int i = 0; i < gameBoard->switches.size(); ++i)
+    for (unsigned int i = 0; i < gameBoard->switches.size(); ++i)
     {
         PathSwitch* s = gameBoard->switches[i].get();
         gameBoard->field[s->curSource.second][s->curSource.first].hasWormHole =

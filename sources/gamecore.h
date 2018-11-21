@@ -2,10 +2,10 @@
 #define GAMECORE_H
 
 #include <QString>
-#include <gameboard.h>
-#include <player.h>
-#include <pathswitch.h>
-#include <levelbuilder.h>
+#include <sources/gameboard.h>
+#include <sources/player.h>
+#include <sources/pathswitch.h>
+#include <sources/levelbuilder.h>
 
 class GameCore : public QObject
 {
